@@ -35,8 +35,7 @@
   chrome.runtime.onInstalled.addListener(() => {
     chrome.bookmarks.getTree(bookmarkTreeNodes => {
       const bookmarks = generateBookmarksJson(bookmarkTreeNodes);
-      console.log('Bookmarks: ', bookmarks);
-      console.log('Bookmarks BookmarkTreeNodes: ', bookmarkTreeNodes);
+      window.bookmarks = bookmarks;
     });
   });
 })();
