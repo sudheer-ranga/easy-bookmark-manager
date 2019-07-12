@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/popup.js"></script>
-    <title>Bookmark Manager</title>
-  </head>
-  <body>
+import React from 'react';
+import './App.css';
+
+function App() {
+  return (
     <div class="bookmark-container">
       <div class="sidebar">
         <ul>
@@ -33,5 +26,7 @@
         </p>
       </div>
     </div>
-  </body>
-</html>
+  );
+}
+
+export default App;
