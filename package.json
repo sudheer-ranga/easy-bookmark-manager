@@ -1,0 +1,21 @@
+{
+  "name": "chrome-bookmark-manager",
+  "version": "1.0.0",
+  "description": "A clean and maintainable bookmark manager for chrome",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "bookmark",
+    "bookmark",
+    "manager",
+    "custom",
+    "bookmark",
+    "manager"
+  ],
+  "author": "Sudheer Ranga",
+  "license": "ISC"
+}
