@@ -2,10 +2,6 @@
   "name": "Bookmark Manager",
   "version": "1.0.0",
   "description": "A clean and maintainable bookmark manager for chrome",
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
   "permissions": ["activeTab", "bookmarks"],
   "browser_action": {
     "default_popup": "index.html",

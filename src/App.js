@@ -2,21 +2,32 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  console.log('Bookmarks: ', window.bookmarks);
+  const bookmarks = window.bookmarks;
+  let dom = '';
+
+  const getFolders = bookmarks => {
+    Object.keys(bookmarks).forEach(key => {
+      if (!bookmarks[key].url) {
+        dom += `<li>${bookmarks[key].title}</li>`;
+        console.log(bookmarks[key].title);
+      }
+
+      if (bookmarks[key].children) {
+        dom += '<ul>';
+        getFolders(bookmarks[key].children);
+        dom += '</ul>';
+      }
+    });
+  };
+
+  getFolders(bookmarks[0].children);
+
+  dom = `<ul>${dom}</ul>`;
+
   return (
     <div class="bookmark-container">
       <div class="sidebar">
-        <ul>
-          <li>Item 1</li>
-          <li>
-            Item 2
-            <ul>
-              <li>Item 2.1</li>
-              <li>Item 2.2</li>
-            </ul>
-          </li>
-          <li>Item 3</li>
-        </ul>
+        <div dangerouslySetInnerHTML={{ __html: dom }} />
       </div>
       <div class="content">
         <p>
