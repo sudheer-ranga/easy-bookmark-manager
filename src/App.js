@@ -1,39 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { Accordion, AccordionItem } from 'react-light-accordion';
-import 'react-light-accordion/demo/css/index.css';
+import bookmarks from './bookmarks.js';
+import BookmarkFolders from './BookmarkFolders/BookmarkFolders';
+import BookmarkContent from './BookmarkContent/BookmarkContent';
 
 function App() {
-  const bookmarks = window.bookmarks;
-
-  const getFolders = bookmarks => {
-    let dom = Object.keys(bookmarks).map(key => {
-      if (!bookmarks[key].url) {
-        return (
-          <AccordionItem title={bookmarks[key].title}>
-            {bookmarks[key].children ? getFolders(bookmarks[key].children) : ''}
-          </AccordionItem>
-        );
-      }
-    });
-
-    return dom;
-  };
+  const theBookmarks = bookmarks[0].children;
+  const bookmarkKeys = Object.keys(theBookmarks);
+  const [currentFolders, setCurrentFolders] = useState(null);
 
   return (
-    <div class="bookmark-container">
-      <div class="sidebar">
-        <Accordion atomic={false}>
-          {getFolders(bookmarks[0].children)}
-        </Accordion>
+    <div className="bookmark-container">
+      <div className="sidebar">
+        {bookmarkKeys.map(id => (
+          <div className="bookmark-block" key={id}>
+            <h3 className="chrome-folders-name">{theBookmarks[id].title}</h3>
+
+            {theBookmarks[id].children ? (
+              <BookmarkFolders folders={theBookmarks[id].children} />
+            ) : null}
+          </div>
+        ))}
       </div>
-      <div class="content">
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci
-          labore rerum quia amet beatae! Maiores iste, eum sit cum debitis
-          suscipit, in distinctio nihil error quaerat consequatur officia, saepe
-          assumenda?
-        </p>
+      <div className="content">
+        <BookmarkContent folders={currentFolders} />
       </div>
     </div>
   );
