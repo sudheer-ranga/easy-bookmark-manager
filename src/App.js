@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 
 function App() {
+  console.log('Bookmarks: ', window.bookmarks);
   return (
     <div class="bookmark-container">
       <div class="sidebar">
