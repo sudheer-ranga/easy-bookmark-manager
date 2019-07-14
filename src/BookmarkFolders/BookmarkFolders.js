@@ -13,7 +13,8 @@ function BookmarkFolders(props) {
         <React.Fragment key={key}>
           {!folders[key].url ? (
             <div className="sub-folders">
-              <h2 className={key === appState.currentFolders.id ? 'active' : null}
+              <h2
+                className={key === appState.currentFolders.id ? 'active' : null}
                 onClick={() => {
                   doAction({
                     type: 'SET_CURRENT_FOLDERS',
@@ -22,11 +23,27 @@ function BookmarkFolders(props) {
                 }}
               >
                 <span className="folder-icon">
-                  {/* <img src="/images/icons/folder.svg" /> */}
                   <FolderIcon />
                 </span>
                 <span className="folder-title">{folders[key].title}</span>
               </h2>
+
+              {/* <h2
+                className={
+                  key === appState.currentFolders.id
+                    ? 'editable active'
+                    : 'editable'
+                }
+              >
+                <span className="folder-icon">
+                  <FolderIcon />
+                </span>
+                <input
+                  type="text"
+                  className="folder-input-title"
+                  value={folders[key].title}
+                />
+              </h2> */}
 
               {folders[key].children ? (
                 <BookmarkFolders folders={folders[key].children} />

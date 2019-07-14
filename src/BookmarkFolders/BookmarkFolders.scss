@@ -26,9 +26,13 @@
           }
         }
       }
+
+      &.editable {
+        background: #f8f8f8;
+      }
     }
   }
-  
+
   .folder-icon,
   .folder-name {
     display: inline-block;
@@ -44,6 +48,19 @@
 
   .folder-title {
     font-weight: inherit;
+  }
+
+  .folder-input-title {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    line-height: 1.5;
+    font-size: inherit;
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   > .sub-folders {

@@ -1,0 +1,34 @@
+const getChildrenNodes = childrenNodes => {
+  let result = {};
+
+  childrenNodes.children.forEach(node => {
+    result[node.id] = {
+      id: node.id,
+      title: node.title || null,
+      parentId: node.parentId || null
+    };
+
+    if (node.children && node.children.length > 0) {
+      result[node.id].children = getChildrenNodes(node);
+    } else if (node.url) {
+      result[node.id].url = node.url;
+    }
+  });
+
+  return result;
+};
+
+export const generateBookmarksJson = nodes => {
+  let result = {};
+
+  nodes.forEach(node => {
+    result[node.id] = {
+      id: node.id,
+      title: node.title || null,
+      parentId: node.parentId || null,
+      children: getChildrenNodes(node)
+    };
+  });
+
+  return result;
+};

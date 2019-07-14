@@ -1,16 +1,31 @@
+/*global chrome*/
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import { BookmarkStore } from './BookmarkStore';
+import { generateBookmarksJson } from './util';
 
-window.addEventListener('message', function(data) {
-  window.bookmarks = data.data;
+// ReactDOM.render(
+//   <BookmarkStore>
+//     <App />
+//   </BookmarkStore>,
+//   document.getElementById('root')
+// );
 
-  ReactDOM.render(
-    <BookmarkStore>
-      <App />
-    </BookmarkStore>,
-    document.getElementById('root')
-  );
-});
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    chrome.bookmarks.getTree(bookmarkTreeNodes => {
+      const bookmarks = generateBookmarksJson(bookmarkTreeNodes);
+      window.bookmarks = bookmarks;
+
+      ReactDOM.render(
+        <BookmarkStore>
+          <App />
+        </BookmarkStore>,
+        document.getElementById('root')
+      );
+    });
+  });
+})();
