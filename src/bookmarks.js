@@ -1,4 +1,4 @@
-const bookmarks = {
+const bookmarksJson = {
   "0": {
     "title": null,
     "parentId": null,
@@ -6425,4 +6425,4 @@ const bookmarks = {
   }
 }
 
-export default bookmarks
+export default bookmarksJson;

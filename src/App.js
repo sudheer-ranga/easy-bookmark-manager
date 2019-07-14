@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
-import './App.css';
-import bookmarks from './bookmarks.js';
+import React, { useState, useContext } from 'react';
+import './App.scss';
 import BookmarkFolders from './BookmarkFolders/BookmarkFolders';
 import BookmarkContent from './BookmarkContent/BookmarkContent';
+import { BookmarkContext } from './BookmarkStore';
 
 function App() {
-  const theBookmarks = bookmarks[0].children;
-  const bookmarkKeys = Object.keys(theBookmarks);
-  const [currentFolders, setCurrentFolders] = useState(null);
+  const [state, action] = useContext(BookmarkContext);
+  const bookmarkChildrens = state.bookmarks[0].children;
 
   return (
     <div className="bookmark-container">
       <div className="sidebar">
-        {bookmarkKeys.map(id => (
+        {Object.keys(bookmarkChildrens).map(id => (
           <div className="bookmark-block" key={id}>
-            <h3 className="chrome-folders-name">{theBookmarks[id].title}</h3>
+            <h3 className="chrome-folders-name">
+              {bookmarkChildrens[id].title}
+            </h3>
 
-            {theBookmarks[id].children ? (
-              <BookmarkFolders folders={theBookmarks[id].children} />
+            {bookmarkChildrens[id].children ? (
+              <BookmarkFolders folders={bookmarkChildrens[id].children} />
             ) : null}
           </div>
         ))}
       </div>
       <div className="content">
-        <BookmarkContent folders={currentFolders} />
+        <BookmarkContent />
       </div>
     </div>
   );

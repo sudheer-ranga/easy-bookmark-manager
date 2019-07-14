@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import './BookmarkFolders.css';
+import React, { useContext } from 'react';
+import { BookmarkContext } from './../BookmarkStore';
+import { ReactComponent as FolderIcon } from './../icons/folder.svg';
+import './BookmarkFolders.scss';
 
 function BookmarkFolders(props) {
   const { folders } = props;
-  const [currentFolders, setCurrentFolders] = useState(null);
+  const [appState, doAction] = useContext(BookmarkContext);
 
   return (
     <React.Fragment>
@@ -13,12 +15,19 @@ function BookmarkFolders(props) {
             <div className="sub-folders">
               <h2
                 onClick={() => {
-                  setCurrentFolders(folders[key]);
-                  console.log('Current Folder: ', folders[key]);
+                  doAction({
+                    type: 'SET_CURRENT_FOLDERS',
+                    payload: folders[key]
+                  });
                 }}
               >
-                {folders[key].title}
+                <span className="folder-icon">
+                  {/* <img src="/images/icons/folder.svg" /> */}
+                  <FolderIcon />
+                </span>
+                <span className="folder-title">{folders[key].title}</span>
               </h2>
+
               {folders[key].children ? (
                 <BookmarkFolders folders={folders[key].children} />
               ) : null}

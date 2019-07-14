@@ -1,0 +1,43 @@
+.bookmark-content {
+  .bookmark-card {
+    /* border: 1px solid #ccc; */
+    border-bottom: 1px solid #ccc;
+    /* border-radius: 4px; */
+    line-height: 1.5;
+    padding: 10px;
+    /* margin-bottom: 15px; */
+  }
+
+  .bookmark-link {
+    // .link-icon {
+    //   width: 16px;
+    // }
+
+    .link-text {
+      color: #666;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+
+  .bookmark-folder {
+    cursor: pointer;
+    
+    .folder-icon,
+    .folder-name {
+      display: inline-block;
+      vertical-align: baseline;
+      // vertical-align: middle;
+    }
+
+    .folder-icon {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .folder-name {
+      line-height: 1;
+    }
+  }
+}
