@@ -5,9 +5,9 @@ import { ReactComponent as LinkIcon } from './../icons/link.svg';
 import './BookmarkContent.scss';
 
 function BookmarkContent(props) {
-  const [state, action] = useContext(BookmarkContext);
+  const [appState, doAction] = useContext(BookmarkContext);
 
-  const currentFolders = state.currentFolders;
+  const currentFolders = appState.currentFolders;
   console.log('object: ', currentFolders);
   const folders = currentFolders && currentFolders.children;
 
@@ -20,7 +20,7 @@ function BookmarkContent(props) {
               <div className="bookmark-card" key={key}>
                 <p className="bookmark-link">
                   {/* <LinkIcon className="link-icon" /> */}
-                  <a className="link-text" href={folders[key].url}>
+                  <a className="link-text" href={folders[key].url} target="_blank">
                     {folders[key].title}
                   </a>
                 </p>
@@ -29,7 +29,12 @@ function BookmarkContent(props) {
           } else if (folders[key].children && !folders[key].url) {
             return (
               <div className="bookmark-card" key={key}>
-                <p className="bookmark-folder">
+                <p className="bookmark-folder" onClick={() => {
+                  doAction({
+                    type: 'SET_CURRENT_FOLDERS',
+                    payload: folders[key]
+                  });
+                }}>
                   <span className="folder-icon">
                     <FolderIcon />
                   </span>

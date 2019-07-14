@@ -15,7 +15,8 @@
         // width: 18px;
       }
 
-      &:hover {
+      &:hover,
+      &.active {
         color: #7046b1;
         // font-weight: 400;
 

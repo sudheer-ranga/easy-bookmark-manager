@@ -5,6 +5,7 @@
 
       childrenNodes.children.forEach(node => {
         result[node.id] = {
+          id: node.id,
           title: node.title || null,
           parentId: node.parentId || null
         };
@@ -24,6 +25,7 @@
 
       nodes.forEach(node => {
         result[node.id] = {
+          id: node.id,
           title: node.title || null,
           parentId: node.parentId || null,
           children: getChildrenNodes(node)

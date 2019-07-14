@@ -13,7 +13,7 @@ function BookmarkFolders(props) {
         <React.Fragment key={key}>
           {!folders[key].url ? (
             <div className="sub-folders">
-              <h2
+              <h2 className={key === appState.currentFolders.id ? 'active' : null}
                 onClick={() => {
                   doAction({
                     type: 'SET_CURRENT_FOLDERS',
