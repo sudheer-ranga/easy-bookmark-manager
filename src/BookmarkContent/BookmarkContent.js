@@ -1,22 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { BookmarkContext } from './../BookmarkStore';
 import { ReactComponent as FolderIcon } from './../icons/folder.svg';
+import { ReactComponent as EditIcon } from './../icons/edit.svg';
+import { ReactComponent as SaveIcon } from './../icons/save.svg';
 import './BookmarkContent.scss';
 
 function BookmarkContent(props) {
   const [appState, doAction] = useContext(BookmarkContext);
 
-  const currentFolders = appState.currentFolders;
-  const folders = currentFolders && currentFolders.children;
-  console.log('object: ', folders);
+  const currentFolder = appState.currentFolder;
+  const folders = currentFolder && currentFolder.children;
+
+  const [changedFolderName, setChangedFolderName] = useState(
+    currentFolder.title
+  );
+  console.log('changedFolderName: ', changedFolderName);
 
   return (
     <div className="bookmark-content">
-      <input
-        className="main-folder-name"
-        type="text"
-        value={currentFolders.title}
-      />
+      <div className="input-name-block">
+        <input
+          className="main-folder-name"
+          type="text"
+          value={changedFolderName}
+          onChange={e => setChangedFolderName(e.target.value)}
+        />
+
+        {changedFolderName && changedFolderName !== currentFolder.title ? (
+          <span
+            className="icon-wrapper"
+            onClick={() => {
+              doAction({
+                type: 'RENAME_FOLDER',
+                payload: {
+                  id: currentFolder.id,
+                  name: changedFolderName
+                }
+              });
+            }}
+          >
+            <SaveIcon />
+          </span>
+        ) : (
+          <span className="icon-wrapper">
+            <EditIcon />
+          </span>
+        )}
+      </div>
 
       {folders &&
         Object.keys(folders).map(key => {
@@ -41,7 +71,7 @@ function BookmarkContent(props) {
                   className="bookmark-folder"
                   onClick={() => {
                     doAction({
-                      type: 'SET_CURRENT_FOLDERS',
+                      type: 'SET_CURRENT_FOLDER',
                       payload: folders[key]
                     });
                   }}

@@ -14,10 +14,10 @@ function BookmarkFolders(props) {
           {!folders[key].url ? (
             <div className="sub-folders">
               <h2
-                className={key === appState.currentFolders.id ? 'active' : null}
+                className={key === appState.currentFolder.id ? 'active' : null}
                 onClick={() => {
                   doAction({
-                    type: 'SET_CURRENT_FOLDERS',
+                    type: 'SET_CURRENT_FOLDER',
                     payload: folders[key]
                   });
                 }}
@@ -27,23 +27,6 @@ function BookmarkFolders(props) {
                 </span>
                 <span className="folder-title">{folders[key].title}</span>
               </h2>
-
-              {/* <h2
-                className={
-                  key === appState.currentFolders.id
-                    ? 'editable active'
-                    : 'editable'
-                }
-              >
-                <span className="folder-icon">
-                  <FolderIcon />
-                </span>
-                <input
-                  type="text"
-                  className="folder-input-title"
-                  value={folders[key].title}
-                />
-              </h2> */}
 
               {folders[key].children ? (
                 <BookmarkFolders folders={folders[key].children} />

@@ -5,19 +5,33 @@
     padding: 10px;
   }
 
-  .main-folder-name {
-    background: transparent;
-    margin: 0;
-    padding: 5px 10px 5px 0;
-    font-size: 24px;
-    font-weight: 300;
-    box-shadow: none;
-    border: 0;
-    border-bottom: 1px solid #ff9800;
-    width: 100%;
+  .input-name-block {
+    position: relative;
 
-    &:focus {
-      outline: none;
+    .main-folder-name {
+      background: transparent;
+      margin: 0;
+      padding: 5px 30px 5px 0;
+      font-size: 24px;
+      font-weight: 300;
+      box-shadow: none;
+      border: 0;
+      border-bottom: 1px solid #ff9800;
+      width: 100%;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .icon-wrapper {
+      cursor: pointer;
+      display: block;
+      width: 18px;
+      position: absolute;
+      right: 5px;
+      top: 0;
+      bottom: 0;
     }
   }
 

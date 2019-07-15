@@ -1,17 +1,20 @@
 /*global chrome*/
 
 import React, { useReducer, createContext } from 'react';
-// import bookmarksJson from './bookmarks.js';
+import bookmarksJson from './bookmarks.js';
+import { initialActiveBookmark, findBookmarksById } from './util';
 
 export const BookmarkContext = createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'SET_CURRENT_FOLDERS':
-      return { ...state, currentFolders: action.payload };
-    case 'RENAME_FOLDERS':
-      console.log(chrome.bookmarks);
-      return { state };
+    case 'SET_CURRENT_FOLDER':
+      return { ...state, currentFolder: action.payload };
+    case 'SET_BOOKMARKS':
+      return { ...state, bookmarks: action.payload };
+    case 'RENAME_FOLDER':
+      console.log(action.payload);
+      return state;
 
     default:
       return state;
@@ -19,31 +22,11 @@ const reducer = (state, action) => {
 };
 
 export const BookmarkStore = props => {
-  const bookmarksJson = window.bookmarks;
-  let firstBookmark = null;
-  const json = bookmarksJson[0].children;
+  // const bookmarksJson = window.bookmarks;
 
-  console.log('chrome.bookmarks: ', chrome.bookmarks);
-
-  Object.keys(json).some(key => {
-    const childJson = json[key].children;
-
-    let hasChildren = Object.keys(childJson).some(k => {
-      if (childJson[k].children) {
-        firstBookmark = childJson[k];
-        console.log('firstBookmark: ', firstBookmark);
-        return true;
-      }
-
-      return false;
-    });
-
-    return hasChildren;
-  });
-
-  const stateHooks = useReducer(reducer, {
+  let stateHooks = useReducer(reducer, {
     bookmarks: bookmarksJson,
-    currentFolders: firstBookmark
+    currentFolder: initialActiveBookmark(bookmarksJson)
   });
 
   return (

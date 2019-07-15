@@ -5,8 +5,8 @@ import BookmarkContent from './BookmarkContent/BookmarkContent';
 import { BookmarkContext } from './BookmarkStore';
 
 function App() {
-  const [state, action] = useContext(BookmarkContext);
-  const bookmarkChildrens = state.bookmarks[0].children;
+  const [appState, doAction] = useContext(BookmarkContext);
+  const bookmarkChildrens = appState.bookmarks[0].children;
 
   return (
     <div className="bookmark-container">
