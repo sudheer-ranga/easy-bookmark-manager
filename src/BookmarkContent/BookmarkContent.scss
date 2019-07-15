@@ -19,12 +19,11 @@
       background: transparent;
       margin: 0;
       padding: 10px;
-      // padding: 10px 30px 10px 0;
       font-size: 24px;
-      font-weight: 300;
+      font-weight: 100;
       box-shadow: none;
       border: 0;
-      border-bottom: 1px solid #ff9800;
+      // border-bottom: 1px solid #ff9800;
       width: 100%;
 
       &:focus {
@@ -69,10 +68,6 @@
       line-height: 1.5;
       font-size: 14px;
       font-weight: 400;
-
-      // &:hover {
-      //   color: #2980b9;
-      // }
     }
   }
 
@@ -80,7 +75,7 @@
     .empty-folder-info {
       font-size: 14px;
       font-weight: 400;
-      color: red;
+      color: #d00;
       margin-top: 25px;
     }
   }

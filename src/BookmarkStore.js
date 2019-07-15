@@ -10,11 +10,6 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_CURRENT_FOLDER':
       return { ...state, currentFolder: action.payload };
-    case 'SET_BOOKMARKS':
-      return { ...state, bookmarks: action.payload };
-    case 'RENAME_FOLDER':
-      console.log(action.payload);
-      return state;
 
     default:
       return state;
@@ -22,8 +17,7 @@ const reducer = (state, action) => {
 };
 
 export const BookmarkStore = props => {
-  // const bookmarksJson = window.bookmarks;
-  window.bookmarks = bookmarksJson;
+  // const bookmarksJson = window.bookmarks[0].children;
 
   let stateHooks = useReducer(reducer, {
     bookmarks: bookmarksJson,

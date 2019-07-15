@@ -14,18 +14,16 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// (function() {
-//   document.addEventListener('DOMContentLoaded', function() {
-//     chrome.bookmarks.getTree(bookmarkTreeNodes => {
-//       const bookmarks = generateBookmarksJson(bookmarkTreeNodes);
-//       window.bookmarks = bookmarks;
+// document.addEventListener('DOMContentLoaded', function() {
+//   chrome.bookmarks.getTree(bookmarkTreeNodes => {
+//     const bookmarks = generateBookmarksJson(bookmarkTreeNodes);
+//     window.bookmarks = bookmarks;
 
-//       ReactDOM.render(
-//         <BookmarkStore>
-//           <App />
-//         </BookmarkStore>,
-//         document.getElementById('root')
-//       );
-//     });
+//     ReactDOM.render(
+//       <BookmarkStore>
+//         <App />
+//       </BookmarkStore>,
+//       document.getElementById('root')
+//     );
 //   });
-// })();
+// });

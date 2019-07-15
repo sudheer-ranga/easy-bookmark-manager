@@ -6,11 +6,18 @@ import { BookmarkContext } from './BookmarkStore';
 
 function App() {
   const [appState] = useContext(BookmarkContext);
-  const bookmarkChildrens = appState.bookmarks[0].children;
+  const bookmarkChildrens = appState.bookmarks;
+
+  const openSearchModal = () => {};
 
   return (
     <div className="bookmark-container">
       <div className="sidebar">
+        <div className="search-bar">
+          <p className="search-text" onClick={openSearchModal}>
+            Search Bookmarks
+          </p>
+        </div>
         {Object.keys(bookmarkChildrens).map(id => (
           <div className="bookmark-block" key={id}>
             <h3 className="chrome-folders-name">

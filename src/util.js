@@ -33,8 +33,7 @@ export const generateBookmarksJson = nodes => {
   return result;
 };
 
-export const initialActiveBookmark = bookmarksJson => {
-  const json = bookmarksJson[0].children;
+export const initialActiveBookmark = json => {
   let firstBookmark = null;
 
   Object.keys(json).some(key => {

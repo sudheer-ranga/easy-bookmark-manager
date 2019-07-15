@@ -1,5 +1,5 @@
 {
-  "name": "Bookmark Manager",
+  "name": "Easy Bookmark Manager",
   "version": "1.0.0",
   "description": "A clean and maintainable bookmark manager for chrome",
   "permissions": ["activeTab", "bookmarks"],
