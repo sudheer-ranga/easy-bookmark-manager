@@ -54,6 +54,12 @@ export const initialActiveBookmark = json => {
   return firstBookmark;
 };
 
+const isStringPresent = (title, strings) => {
+  return strings.some(string => {
+    return title.toLowerCase().indexOf(string) > -1;
+  });
+};
+
 export const searchJson = (json, searchString, searchResults) => {
   if (!searchString) {
     return json;
@@ -63,8 +69,9 @@ export const searchJson = (json, searchString, searchResults) => {
 
   Object.keys(json).forEach(key => {
     let title = json[key].title;
+    let strings = searchString.split(' ');
 
-    if (title && title.toLowerCase().indexOf(searchString) > -1) {
+    if (title && isStringPresent(title, strings)) {
       if (!json[key].children) {
         searchResults.push(json[key]);
       } else {
