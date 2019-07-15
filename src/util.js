@@ -54,9 +54,7 @@ export const initialActiveBookmark = json => {
   return firstBookmark;
 };
 
-let searchResults = [];
-
-export const searchJson = (json, searchString) => {
+export const searchJson = (json, searchString, searchResults) => {
   if (!searchString) {
     return json;
   }
@@ -70,14 +68,30 @@ export const searchJson = (json, searchString) => {
       if (!json[key].children) {
         searchResults.push(json[key]);
       } else {
-        searchJson(json[key].children, searchString);
+        searchJson(json[key].children, searchString, searchResults);
       }
     }
 
     if (json[key].children) {
-      searchJson(json[key].children, searchString);
+      searchJson(json[key].children, searchString, searchResults);
     }
   });
 
   return searchResults;
+};
+
+export const debounce = (func, wait, immediate) => {
+  var timeout;
+  return function() {
+    var context = this,
+      args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
 };

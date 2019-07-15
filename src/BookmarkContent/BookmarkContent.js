@@ -9,14 +9,8 @@ function BookmarkContent(props) {
   const currentFolder = appState.currentFolder;
   const folders = currentFolder && currentFolder.children;
 
-  console.log('currentFolder: ', currentFolder);
-
   return (
     <div className="bookmark-content">
-      <div className="input-name-block">
-        <p className="main-folder-name">{currentFolder.title}</p>
-      </div>
-
       {folders ? (
         Object.keys(folders).map(key => {
           if (!folders[key].children && folders[key].url) {

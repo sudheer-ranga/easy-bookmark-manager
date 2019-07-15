@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import './App.scss';
 import BookmarkFolders from './BookmarkFolders/BookmarkFolders';
 import BookmarkContent from './BookmarkContent/BookmarkContent';
 import { BookmarkContext } from './BookmarkStore';
+import Header from './Header/Header';
+import './App.scss';
 
 function App() {
   const [appState] = useContext(BookmarkContext);
@@ -12,12 +13,9 @@ function App() {
 
   return (
     <div className="bookmark-container">
+      <Header />
+
       <div className="sidebar">
-        <div className="search-bar">
-          <p className="search-text" onClick={openSearchModal}>
-            Search Bookmarks
-          </p>
-        </div>
         {Object.keys(bookmarkChildrens).map(id => (
           <div className="bookmark-block" key={id}>
             <h3 className="chrome-folders-name">

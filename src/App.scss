@@ -2,21 +2,6 @@
   width: 100%;
   height: 100%;
 
-  .search-bar {
-    width: 100%;
-    padding: 5px;
-
-    .search-text {
-      cursor: text;
-      border: 1px solid #ccc;
-      width: 100%;
-      height: 100%;
-      border-radius: 4px;
-      padding: 5px 10px;
-      line-height: 1;
-    }
-  }
-
   .sidebar,
   .content {
     float: left;
