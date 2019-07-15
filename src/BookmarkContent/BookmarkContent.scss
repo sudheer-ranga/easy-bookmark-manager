@@ -11,7 +11,7 @@
     .main-folder-name {
       background: transparent;
       margin: 0;
-      padding: 5px 30px 5px 0;
+      padding: 10px 30px 10px 0;
       font-size: 24px;
       font-weight: 300;
       box-shadow: none;
@@ -51,6 +51,15 @@
 
     .folder-name {
       line-height: 1;
+    }
+  }
+
+  .empty-folder-container {
+    .empty-folder-info {
+      font-size: 14px;
+      font-weight: 400;
+      color: red;
+      margin-top: 25px;
     }
   }
 }

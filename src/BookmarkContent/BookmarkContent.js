@@ -11,22 +11,24 @@ function BookmarkContent(props) {
   const currentFolder = appState.currentFolder;
   const folders = currentFolder && currentFolder.children;
 
-  const [changedFolderName, setChangedFolderName] = useState(
-    currentFolder.title
-  );
-  console.log('changedFolderName: ', changedFolderName);
+  // const [changedFolderName, setChangedFolderName] = useState(
+  //   currentFolder.title
+  // );
+
+  console.log('currentFolder: ', currentFolder);
 
   return (
     <div className="bookmark-content">
       <div className="input-name-block">
-        <input
+        <p className="main-folder-name">{currentFolder.title}</p>
+        {/* <input
           className="main-folder-name"
           type="text"
           value={changedFolderName}
           onChange={e => setChangedFolderName(e.target.value)}
-        />
+        /> */}
 
-        {changedFolderName && changedFolderName !== currentFolder.title ? (
+        {/* {changedFolderName && changedFolderName !== currentFolder.title ? (
           <span
             className="icon-wrapper"
             onClick={() => {
@@ -45,10 +47,10 @@ function BookmarkContent(props) {
           <span className="icon-wrapper">
             <EditIcon />
           </span>
-        )}
+        )} */}
       </div>
 
-      {folders &&
+      {folders ? (
         Object.keys(folders).map(key => {
           if (!folders[key].children && folders[key].url) {
             return (
@@ -86,7 +88,12 @@ function BookmarkContent(props) {
           }
 
           return null;
-        })}
+        })
+      ) : (
+        <div className="empty-folder-container">
+          <p className="empty-folder-info">No bookmarks found in this folder</p>
+        </div>
+      )}
     </div>
   );
 }
