@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { BookmarkContext } from './../BookmarkStore';
 import { ReactComponent as FolderIcon } from './../icons/folder.svg';
-import { ReactComponent as EditIcon } from './../icons/edit.svg';
-import { ReactComponent as SaveIcon } from './../icons/save.svg';
 import './BookmarkContent.scss';
 
 function BookmarkContent(props) {
@@ -11,43 +9,12 @@ function BookmarkContent(props) {
   const currentFolder = appState.currentFolder;
   const folders = currentFolder && currentFolder.children;
 
-  // const [changedFolderName, setChangedFolderName] = useState(
-  //   currentFolder.title
-  // );
-
   console.log('currentFolder: ', currentFolder);
 
   return (
     <div className="bookmark-content">
       <div className="input-name-block">
         <p className="main-folder-name">{currentFolder.title}</p>
-        {/* <input
-          className="main-folder-name"
-          type="text"
-          value={changedFolderName}
-          onChange={e => setChangedFolderName(e.target.value)}
-        /> */}
-
-        {/* {changedFolderName && changedFolderName !== currentFolder.title ? (
-          <span
-            className="icon-wrapper"
-            onClick={() => {
-              doAction({
-                type: 'RENAME_FOLDER',
-                payload: {
-                  id: currentFolder.id,
-                  name: changedFolderName
-                }
-              });
-            }}
-          >
-            <SaveIcon />
-          </span>
-        ) : (
-          <span className="icon-wrapper">
-            <EditIcon />
-          </span>
-        )} */}
       </div>
 
       {folders ? (
