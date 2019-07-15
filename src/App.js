@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import './App.scss';
 import BookmarkFolders from './BookmarkFolders/BookmarkFolders';
 import BookmarkContent from './BookmarkContent/BookmarkContent';
 import { BookmarkContext } from './BookmarkStore';
 
 function App() {
-  const [appState, doAction] = useContext(BookmarkContext);
+  const [appState] = useContext(BookmarkContext);
   const bookmarkChildrens = appState.bookmarks[0].children;
 
   return (

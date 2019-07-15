@@ -55,44 +55,30 @@ export const initialActiveBookmark = bookmarksJson => {
   return firstBookmark;
 };
 
-let activeFolder = null;
+let searchResults = [];
 
-const searchObjectRecursively = (childJson, id) => {
-  let isFound = Object.keys(childJson).some(k => {
-    if (childJson[k].id === id) {
-      activeFolder = childJson[k];
-      return true;
-    } else {
-      if (childJson[k].children) {
-        return searchObjectRecursively(childJson[k].children, id);
+export const searchJson = (json, searchString) => {
+  if (!searchString) {
+    return json;
+  }
+
+  searchString = searchString.toLowerCase();
+
+  Object.keys(json).forEach(key => {
+    let title = json[key].title;
+
+    if (title && title.toLowerCase().indexOf(searchString) > -1) {
+      if (!json[key].children) {
+        searchResults.push(json[key]);
+      } else {
+        searchJson(json[key].children, searchString);
       }
     }
 
-    return false;
+    if (json[key].children) {
+      searchJson(json[key].children, searchString);
+    }
   });
 
-  return isFound;
-};
-
-export const findBookmarksById = (bookmarksJson, id) => {
-  const json = bookmarksJson[0].children;
-
-  Object.keys(json).some(key => {
-    if (json[key].id === id) {
-      activeFolder = json[key];
-      return true;
-    }
-
-    const childJson = json[key].children;
-
-    if (childJson) {
-      return searchObjectRecursively(childJson, id);
-    }
-
-    return false;
-  });
-
-  console.log('Active Folder: ', activeFolder);
-
-  return activeFolder;
+  return searchResults;
 };

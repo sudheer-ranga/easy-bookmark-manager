@@ -27,8 +27,8 @@
         }
       }
 
-      &.editable {
-        background: #f8f8f8;
+      &.active {
+        font-weight: 400;
       }
     }
   }

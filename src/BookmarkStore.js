@@ -2,7 +2,7 @@
 
 import React, { useReducer, createContext } from 'react';
 import bookmarksJson from './bookmarks.js';
-import { initialActiveBookmark, findBookmarksById } from './util';
+import { initialActiveBookmark } from './util';
 
 export const BookmarkContext = createContext();
 
@@ -23,6 +23,7 @@ const reducer = (state, action) => {
 
 export const BookmarkStore = props => {
   // const bookmarksJson = window.bookmarks;
+  window.bookmarks = bookmarksJson;
 
   let stateHooks = useReducer(reducer, {
     bookmarks: bookmarksJson,

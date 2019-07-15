@@ -27,6 +27,7 @@ function BookmarkContent(props) {
                     className="link-text"
                     href={folders[key].url}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {folders[key].title}
                   </a>
