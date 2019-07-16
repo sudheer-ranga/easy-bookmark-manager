@@ -33,9 +33,9 @@
     width: calc(100% - 300px);
 
     .search-text {
-      width: 100%;
+      width: calc(100% - 25px);
       height: 100%;
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
       border: 0;
       line-height: 1;
@@ -44,7 +44,6 @@
       font-style: italic;
       border-bottom: 2px solid #7046b1;
       color: #888;
-      margin-bottom: 5px;
 
       &:focus {
         outline: none;
@@ -76,10 +75,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    // background: rgba(255, 255, 255, 0.75);
-    background: rgba(147, 132, 175, 0.9);
+    background: rgba(5, 5, 5, 0.9);
     overflow: scroll;
-    color: #333;
+    color: #eee;
     padding: 5px 25px;
 
     .search-block {
@@ -92,6 +90,7 @@
         color: #eee;
         font-size: 24px;
         border-bottom: 1px solid #eee;
+        padding-bottom: 7px;
         width: 100%;
 
         &:focus {
@@ -131,7 +130,7 @@
           display: block;
 
           &:hover {
-            color: #333;
+            color: #07e;
           }
         }
       }
