@@ -102,3 +102,15 @@ export const debounce = (func, wait, immediate) => {
     if (callNow) func.apply(context, args);
   };
 };
+
+export const getJsonAsArray = (json, results) => {
+  Object.keys(json).forEach(key => {
+    if (!json[key].children) {
+      results.push(json[key]);
+    } else {
+      getJsonAsArray(json[key].children, results);
+    }
+  });
+
+  return results;
+};

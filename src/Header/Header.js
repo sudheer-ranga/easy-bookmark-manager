@@ -1,15 +1,33 @@
 import React, { useState, useContext } from 'react';
 import './Header.scss';
 import { BookmarkContext } from './../BookmarkStore';
-import { debounce, searchJson } from '../util';
+import { debounce, getJsonAsArray } from '../util';
+import Fuse from 'fuse.js';
 
 function Header() {
   const [appState] = useContext(BookmarkContext);
   const [searchResults, setSearchResults] = useState([]);
   const [searchModalOpened, setSearchModalOpened] = useState(false);
+  const [fuse, setFuse] = useState(null);
 
   const openSearchModal = () => {
     setSearchModalOpened(true);
+
+    let bookmarksToArray = [];
+    const options = {
+      shouldSort: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 2,
+      keys: ['title', 'url']
+    };
+
+    getJsonAsArray(appState.bookmarks, bookmarksToArray);
+    let fuse = new Fuse(bookmarksToArray, options);
+
+    setFuse(fuse);
   };
 
   const closeSearchModal = () => {
@@ -18,17 +36,14 @@ function Header() {
   };
 
   const searchBookmarks = e => {
-    // debugger;
     let searchString = e.target.value;
     console.log('length: ', searchString.split('').length);
-
     if (searchString && !(searchString.split('').length > 2)) {
       return;
     }
 
-    let results = [];
-    searchJson(appState.bookmarks, searchString, results);
-
+    const results = fuse.search(searchString);
+    console.log('Search Result: ', results);
     setSearchResults(results);
   };
 
@@ -50,12 +65,15 @@ function Header() {
             <span onClick={closeSearchModal}>x</span>
           </div>
           <div className="search-block">
-            <input
-              type="search"
-              className="modal-search-input"
-              placeholder="Search Bookmarks"
-              onChange={searchBookmarks}
-            />
+            <form>
+              <input
+                type="search"
+                className="modal-search-input"
+                placeholder="Search Bookmarks"
+                onChange={searchBookmarks}
+                autoFocus
+              />
+            </form>
           </div>
           <ul className="search-result-block">
             {searchResults.map((result, index) => (
