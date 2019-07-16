@@ -38,13 +38,11 @@ function Header() {
 
   const searchBookmarks = e => {
     let searchString = e.target.value;
-    console.log('length: ', searchString.split('').length);
     if (searchString && !(searchString.split('').length > 2)) {
       return;
     }
 
     const results = fuse.search(searchString);
-    console.log('Search Result: ', results);
     setSearchResults(results);
   };
 
