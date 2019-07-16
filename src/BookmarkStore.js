@@ -1,7 +1,7 @@
 /*global chrome*/
 
 import React, { useReducer, createContext } from 'react';
-import bookmarksJson from './bookmarks.js';
+// import bookmarksJson from './bookmarks.js';
 import { initialActiveBookmark } from './util';
 
 export const BookmarkContext = createContext();
@@ -17,7 +17,7 @@ const reducer = (state, action) => {
 };
 
 export const BookmarkStore = props => {
-  // const bookmarksJson = window.bookmarks[0].children;
+  const bookmarksJson = window.bookmarks[0].children;
 
   let stateHooks = useReducer(reducer, {
     bookmarks: bookmarksJson,
