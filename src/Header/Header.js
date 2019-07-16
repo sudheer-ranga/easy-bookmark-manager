@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import './Header.scss';
 import { BookmarkContext } from './../BookmarkStore';
 import { debounce, getJsonAsArray } from '../util';
+import { ReactComponent as SearchIcon } from './../icons/search.svg';
 import Fuse from 'fuse.js';
 
 function Header() {
@@ -50,12 +51,16 @@ function Header() {
   return (
     <div className="header-container">
       <div className="logo-container">
+        <img className="logo" src="images/logo.png" />
         <p className="logo-text">Bookmark Manager</p>
       </div>
       <div className="search-bar">
         {/* <input className="search-text" placeholder="Search Bookmarks" /> */}
         <p className="search-text" onClick={openSearchModal}>
-          Search Bookmarks
+          <span className="search-icon">
+            <SearchIcon />
+          </span>
+          <span className="text">Search Bookmarks</span>
         </p>
       </div>
 
@@ -65,15 +70,13 @@ function Header() {
             <span onClick={closeSearchModal}>x</span>
           </div>
           <div className="search-block">
-            <form>
-              <input
-                type="search"
-                className="modal-search-input"
-                placeholder="Search Bookmarks"
-                onChange={searchBookmarks}
-                autoFocus
-              />
-            </form>
+            <input
+              type="search"
+              className="modal-search-input"
+              placeholder="Search Bookmarks"
+              onChange={searchBookmarks}
+              autoFocus
+            />
           </div>
           <ul className="search-result-block">
             {searchResults.map((result, index) => (
